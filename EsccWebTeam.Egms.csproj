@@ -227,15 +227,15 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Git\Escc.Data.Web\EsccWebTeam.Data.Web.csproj">
+    <ProjectReference Include="..\Escc.Data.Web\EsccWebTeam.Data.Web.csproj">
       <Project>{9c56d3dd-4952-4a1b-9ad6-907a1142872f}</Project>
       <Name>EsccWebTeam.Data.Web</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\Git\Escc.Data.Xml\EsccWebTeam.Data.Xml.csproj">
+    <ProjectReference Include="..\Escc.Data.Xml\EsccWebTeam.Data.Xml.csproj">
       <Project>{86B2725C-9C37-44A4-93C7-F5122AFA0809}</Project>
       <Name>EsccWebTeam.Data.Xml</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\Git\Escc.Gdsc\EsccWebTeam.Gdsc.csproj">
+    <ProjectReference Include="..\Escc.Gdsc\EsccWebTeam.Gdsc.csproj">
       <Project>{a0024354-dd16-43e1-8574-176f8ba4f1ca}</Project>
       <Name>EsccWebTeam.Gdsc</Name>
     </ProjectReference>
