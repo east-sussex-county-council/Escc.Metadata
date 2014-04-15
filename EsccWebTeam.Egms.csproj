@@ -216,6 +216,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Content Include=".gitignore" />
+    <Content Include="EsccWebTeam.Egms.csproj.xslt" />
     <None Include="Autocomplete.ashx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <SubType>Designer</SubType>
