@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using EsccWebTeam.Gdsc;
+using Escc.AddressAndPersonalDetails;
+
 namespace EsccWebTeam.Egms
 {
     /// <summary>

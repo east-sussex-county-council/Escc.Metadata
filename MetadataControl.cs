@@ -9,9 +9,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using Escc.AddressAndPersonalDetails;
 using EsccWebTeam.Data.Web;
 using EsccWebTeam.Egms;
-using EsccWebTeam.Gdsc;
 
 namespace EsccWebTeam.Egms
 {
