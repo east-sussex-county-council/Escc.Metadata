@@ -1646,7 +1646,11 @@ namespace EsccWebTeam.Egms
                 sb.Append("<meta name=\"DC.identifier\" class=\"DCTERMS.URI\" content=\"").Append(pageUrl).Append("\"").Append(this.tagEnd).Append(Environment.NewLine);
             }
 
-            // Use page URL for Open Graph Protocol though. Don't use rel="canonical" because 301 redirects are a better way to handle that.
+            // Try not to have multiple URLs for a page - use 301 redirects to go to the canonical URL. But for short URLs which are 303
+            // redirects, having the canonical URL at the destination should stop the short URL getting into Google's index.
+            sb.Append("<meta rel=\"canonical\" content=\"").Append(pageUrl).Append("\"").Append(this.tagEnd).Append(Environment.NewLine);
+
+            // Use page URL for Open Graph Protocol.
             if (!String.IsNullOrEmpty(this.config.FacebookAppId) || !String.IsNullOrEmpty(this.FacebookAppId))
             {
                 sb.Append("<meta property=\"og:url\" content=\"").Append(pageUrl).Append("\"").Append(this.tagEnd).Append(Environment.NewLine);
