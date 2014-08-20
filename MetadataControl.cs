@@ -2298,9 +2298,6 @@ namespace eastsussexgovuk.webservices.EgmsWebMetadata
     /// 	    &lt;EgmsWebMetadata
     ///	            ...		    
     /// 	    	lgalTypes=&quot;Parents and guardians;Educational workers&quot;
-    /// 	    	picsLabel=&quot;(pics-1.1 &quot;http://www.icra.org/ratingsv02.html&quot; comment &quot;ICRAonline EN v2.0&quot; l gen true for &quot;http://www.eastsussex.gov.uk/&quot; r (nz 1 vz 1 lz 1 oz 1 cz 1) &quot;http://www.rsac.org/ratingsv01.html&quot; l gen true for &quot;http://www.eastsussex.gov.uk/&quot; r (n 0 s 0 v 0 l 0))&quot;
-    /// 		    icraUrl=&quot;http://example.org/icralabels.rdf&quot;
-    /// 	    	rnibAccessible=&quot;true&quot;
     /// 		/&gt;
     /// 	&lt;/EsccWebTeam.Egms&gt;
     /// </code>
@@ -2308,26 +2305,14 @@ namespace eastsussexgovuk.webservices.EgmsWebMetadata
     [Obsolete("Use EsccWebTeam.Egms.MetadataControl instead")]
     public class EgmsWebMetadataControl : MetadataControl
     {
-        private string picsLabel = String.Empty;
-        private string icraUrl = String.Empty;
         private string[] lgalTypes;
-        private bool rnibAccessible;
         private EgmsWebMetadataConfig config;
 
         /// <summary>
         /// Gets or sets the URL of an RDF file containing ICRA labels for the site. ICRA labels can be generated free of charge at <a href="http://www.icra.org">www.icra.org</a>.
         /// </summary>
-        public string IcraUrl
-        {
-            get
-            {
-                return this.icraUrl;
-            }
-            set
-            {
-                this.icraUrl = value;
-            }
-        }
+        [Obsolete("The ICRA standard is obsolete. This property is retained for backward compatibility but not used.")]
+        public string IcraUrl { get; set; }
 
         /// <summary>
         /// Gets or sets the W3C Platform for Internet Content Selection (PICS) label
@@ -2336,17 +2321,9 @@ namespace eastsussexgovuk.webservices.EgmsWebMetadata
         /// <para>The e-GMS regards the PICS label as part of accessibility. Stating the level of accessibility is mandatory in e-GMS v3.0, and including a PICS label is the minimum requirement.</para>
         /// <para>PICS labels can be generated free of charge at <a href="http://www.icra.org">www.icra.org</a>.</para>
         /// </remarks>
-        public string PicsLabel
-        {
-            get
-            {
-                return this.picsLabel;
-            }
-            set
-            {
-                this.picsLabel = value;
-            }
-        }
+        [Obsolete("The PICS standard is obsolete. This property is retained for backward compatibility but not used.")]
+        public string PicsLabel { get; set; }
+
 
         /// <summary>
         /// Gets or sets a semi-colon separated list of audience types or profiles from the Local Government Audience List (LGAL)
@@ -2365,21 +2342,6 @@ namespace eastsussexgovuk.webservices.EgmsWebMetadata
             }
         }
 
-
-        /// <summary>
-        /// Gets or sets whether this site has the RNIB See it Right accreditation
-        /// </summary>
-        public bool RnibAccessible
-        {
-            get
-            {
-                return this.rnibAccessible;
-            }
-            set
-            {
-                this.rnibAccessible = value;
-            }
-        }
 
         /// <summary>
         /// This property is retained for backwards compatibility. It is not used.
@@ -2422,28 +2384,6 @@ namespace eastsussexgovuk.webservices.EgmsWebMetadata
 
             StringBuilder sb = new StringBuilder();
 
-
-            // Errors used to be thrown for a missing PICS label, because that's the minimum requirement stated in the e-GMS 3.1.
-            // However the PICS standard is now dead so it doesn't make sense to comply with that requirement.
-            // WCAG AA accessibility is required of a site, but stating it seems to be optional in the e-GMS.
-            if (this.picsLabel.Length == 0) this.picsLabel = this.config.PicsLabel;
-            if (this.picsLabel.Length > 0)
-            {
-                // use single quotes around the attribute because not sure whether &quot; will be interpreted correctly
-                sb.Append("<meta http-equiv=\"pics-label\" content='").Append(this.picsLabel).Append("'").Append(this.TagEnd).Append(Environment.NewLine);
-            }
-
-            if (this.icraUrl.Length == 0 && this.config.IcraUrl != null) this.icraUrl = this.config.IcraUrl.ToString();
-            if (this.icraUrl.Length > 0)
-            {
-                sb.Append("<link rel=\"meta\" href=\"").Append(this.icraUrl).Append("\" type=\"application/rdf+xml\" title=\"ICRA labels\"").Append(this.TagEnd).Append(Environment.NewLine);
-            }
-
-            if (!this.rnibAccessible) this.rnibAccessible = this.config.RnibAccessible;
-            if (this.rnibAccessible)
-            {
-                sb.Append("<meta name=\"eGMS.accessibility\" class=\"RNIB\" content=\"Approved\"").Append(this.TagEnd).Append(Environment.NewLine);
-            }
 
             // LGAL not mentioned as a scheme in e-GMS 3.1, but is still listed and appears to be under development (at the speed of a snail with a limp) on esd.org.uk as at Oct 2007
 

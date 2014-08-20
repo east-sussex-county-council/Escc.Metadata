@@ -31,7 +31,6 @@ namespace EsccWebTeam.Egms
         /// </exception>
         /// <exception cref="System.FormatException">
         /// <para>This is thrown when an attribute expecting a boolean value did not recognise the value.</para>
-        /// <para>The <b>rnibAccessible</b> attribute expects a boolean.</para>
         /// </exception>
         public object Create(object parent, object configContext, System.Xml.XmlNode section)
         {
@@ -73,19 +72,11 @@ namespace EsccWebTeam.Egms
             }
             if (section.Attributes["spatialCoverage"] != null) config.SpatialCoverage = section.Attributes["spatialCoverage"].Value;
             if (section.Attributes["temporalCoverage"] != null) config.TemporalCoverage = section.Attributes["temporalCoverage"].Value;
-            if (section.Attributes["picsLabel"] != null) config.PicsLabel = section.Attributes["picsLabel"].Value;
-            if (section.Attributes["icraUrl"] != null)
-            {
-                uri = section.Attributes["icraUrl"].Value;
-                if (uri.StartsWith("/")) uri = uriPrefix + uri;
-                config.IcraUrl = new Uri(uri);
-            }
 
             // non-string types
             try
             {
                 // accessibility
-                if (section.Attributes["rnibAccessible"] != null) config.RnibAccessible = Boolean.Parse(section.Attributes["rnibAccessible"].Value);
                 if (section.Attributes["wcagLevel"] != null) config.WcagLevel = (WcagConformance)Enum.Parse(typeof(WcagConformance), section.Attributes["wcagLevel"].Value, true);
 
                 if (section.Attributes["foiExempt"] != null) config.FoiExempt = Boolean.Parse(section.Attributes["foiExempt"].Value);

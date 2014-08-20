@@ -20,7 +20,6 @@ namespace EsccWebTeam.Egms
         private string contributor = String.Empty;
         private string custodian = String.Empty;
         private WcagConformance wcagLevel = WcagConformance.Unknown;
-        private string picsLabel = String.Empty;
         private string publisher = String.Empty;
         private string spatialCoverage = String.Empty;
         private string language = String.Empty;
@@ -45,11 +44,9 @@ namespace EsccWebTeam.Egms
         private string homeToolTip = String.Empty;
         private string searchToolTip = String.Empty;
         private string helpToolTip = String.Empty;
-        private bool rnibAccessible;
         private string temporalCoverage = String.Empty;
         private bool localRequestSet;
         private bool localRequest;
-        private Uri icraUrl;
         private OpenSearchUrl openSearch;
         private Uri iconUrl;
         private string educationAndSkillsPreferredTerms = String.Empty;
@@ -86,22 +83,6 @@ namespace EsccWebTeam.Egms
             set
             {
                 this.openSearch = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the URL of an RDF file containing ICRA labels for the site. ICRA labels can be generated free of charge at <a href="http://www.icra.org">www.icra.org</a>.
-        /// </summary>
-        [Obsolete("The ICRA standard is obsolete.")]
-        public Uri IcraUrl
-        {
-            get
-            {
-                return this.icraUrl;
-            }
-            set
-            {
-                this.icraUrl = value;
             }
         }
 
@@ -158,21 +139,6 @@ namespace EsccWebTeam.Egms
             set
             {
                 this.temporalCoverage = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets whether this site has the RNIB See it Right accreditation
-        /// </summary>
-        public bool RnibAccessible
-        {
-            get
-            {
-                return this.rnibAccessible;
-            }
-            set
-            {
-                this.rnibAccessible = value;
             }
         }
 
@@ -614,22 +580,6 @@ namespace EsccWebTeam.Egms
             set
             {
                 this.publisher = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the W3C Platform for Internet Content Selection (PICS) label
-        /// </summary>
-        [Obsolete("The PICS standard is obsolete")]
-        public string PicsLabel
-        {
-            get
-            {
-                return this.picsLabel;
-            }
-            set
-            {
-                this.picsLabel = value;
             }
         }
 
