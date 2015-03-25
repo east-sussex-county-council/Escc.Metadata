@@ -375,10 +375,16 @@ namespace EsccWebTeam.Egms
 
         private bool WriteFromCache(HttpContext context, string cacheKey, bool isCompressed, string contentType)
         {
-            // If we don't want to cache the result (because it's in development) just return false
+            // If we don't want to cache the result because it's in development just return false
 #if DEBUG
             return false;
 #else
+            // If we don't want the result from cache because we're trying to force the cache to update just return false
+            if (!String.IsNullOrEmpty(context.Request.QueryString["ForceCacheRefresh"]))
+            {
+                return false;
+            }
+
             byte[] responseBytes = context.Cache[GetCacheKey(cacheKey, isCompressed)] as byte[];
 
             if (null == responseBytes || 0 == responseBytes.Length) return false;
