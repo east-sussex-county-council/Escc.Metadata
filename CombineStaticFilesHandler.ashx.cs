@@ -352,7 +352,7 @@ namespace EsccWebTeam.Egms
 
         private byte[] GetFileBytes(HttpContext context, string virtualPath, Encoding encoding)
         {
-            if (virtualPath.StartsWith("http://", StringComparison.InvariantCultureIgnoreCase))
+            if (virtualPath.StartsWith("http://", StringComparison.InvariantCultureIgnoreCase) || virtualPath.StartsWith("https://", StringComparison.InvariantCultureIgnoreCase))
             {
                 using (WebClient client = new WebClient())
                 {
