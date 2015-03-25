@@ -267,8 +267,12 @@ namespace EsccWebTeam.Egms
                         {
 
                             // Load the files defined in config and process each file.
+                            // Support two names for config section to aid transition from this method to the Client Dependency Framework
                             var config = ConfigurationManager.GetSection(configSection) as NameValueCollection;
-                            var keys = new List<string>(configKeys.Split('-'));
+                            if (config == null)
+                            {
+                                config = ConfigurationManager.GetSection("Escc.ClientDependencyFramework" + configSection.Substring(("EsccWebTeam.Egms").Length)) as NameValueCollection;
+                            }
 
                             // Check whether config overrides the default cache duration
                             if (!String.IsNullOrEmpty(config["HttpCacheDays"]))
@@ -286,6 +290,7 @@ namespace EsccWebTeam.Egms
                             // Allow keys to be preceded by a number between 1 and 9 followed by an underscore. This allows prioritisation of some files so that,
                             // for example, a script library will always be loaded first. If this pattern is not used and the key is an exact match, treat it like 
                             // priority 5, or normal priority.
+                            var keys = new List<string>(configKeys.Split('-'));
                             for (var i = 1; i <= 9; i++)
                             {
                                 foreach (string key in keys)
