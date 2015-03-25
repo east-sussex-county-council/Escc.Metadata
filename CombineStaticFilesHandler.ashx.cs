@@ -223,12 +223,12 @@ namespace EsccWebTeam.Egms
                 if (contentType.Contains("CSS"))
                 {
                     contentType = "text/css";
-                    configSection = "EsccWebTeam.Egms/CssFiles";
+                    configSection = "CssFiles";
                 }
                 else if (contentType.Contains("JS"))
                 {
                     contentType = "text/javascript";
-                    configSection = "EsccWebTeam.Egms/ScriptFiles";
+                    configSection = "ScriptFiles";
                 }
                 else
                 {
@@ -267,23 +267,18 @@ namespace EsccWebTeam.Egms
                         {
 
                             // Load the files defined in config and process each file.
-                            // Support two names for config section to aid transition from this method to the Client Dependency Framework
-                            var config = ConfigurationManager.GetSection(configSection) as NameValueCollection;
-                            if (config == null)
-                            {
-                                config = ConfigurationManager.GetSection("Escc.ClientDependencyFramework" + configSection.Substring(("EsccWebTeam.Egms").Length)) as NameValueCollection;
-                            }
+                            var config = LoadConfiguration(configSection);
 
                             // Check whether config overrides the default cache duration
-                            if (!String.IsNullOrEmpty(config["HttpCacheDays"]))
+                            if (ConfigurationValue(config, "HttpCacheDays") != null)
                             {
                                 try
                                 {
-                                    this.CACHE_DURATION = TimeSpan.FromDays(Double.Parse(config["HttpCacheDays"]));
+                                    this.CACHE_DURATION = TimeSpan.FromDays(Double.Parse(ConfigurationValue(config, "HttpCacheDays")));
                                 }
                                 catch (FormatException)
                                 {
-                                    ExceptionManager.Publish(new ConfigurationErrorsException("HttpCacheDays in web.config must be an integer. The value found was " + config["HttpCacheDays"]));
+                                    ExceptionManager.Publish(new ConfigurationErrorsException("HttpCacheDays in web.config must be an integer. The value found was " + ConfigurationValue(config, "HttpCacheDays")));
                                 }
                             }
 
@@ -300,11 +295,11 @@ namespace EsccWebTeam.Egms
                                     {
                                         // Is the key present without a priority?
                                         prioritisedKey = key;
-                                        if (String.IsNullOrEmpty(config[prioritisedKey]))
+                                        if (ConfigurationValue(config, prioritisedKey) == null)
                                         {
                                             // No? Then how about with a priority of 5?
                                             prioritisedKey = i.ToString(CultureInfo.InvariantCulture) + "_" + key;
-                                            if (String.IsNullOrEmpty(config[prioritisedKey]))
+                                            if (ConfigurationValue(config, prioritisedKey) == null)
                                             {
                                                 continue;
                                             }
@@ -314,14 +309,14 @@ namespace EsccWebTeam.Egms
                                     {
                                         // Is the key present with the current priority?
                                         prioritisedKey = i.ToString(CultureInfo.InvariantCulture) + "_" + key;
-                                        if (String.IsNullOrEmpty(config[prioritisedKey]))
+                                        if (ConfigurationValue(config, prioritisedKey) == null)
                                         {
                                             continue;
                                         }
                                     }
 
 
-                                    byte[] fileBytes = this.GetFileBytes(context, config[prioritisedKey].Trim(), encoding);
+                                    byte[] fileBytes = this.GetFileBytes(context, ConfigurationValue(config, prioritisedKey).Trim(), encoding);
                                     writer.Write(fileBytes, 0, fileBytes.Length);
                                     writer.Write(fileDivider, 0, fileDivider.Length); // add newline to separate from next file
                                 }
@@ -348,6 +343,44 @@ namespace EsccWebTeam.Egms
             {
                 ExceptionManager.Publish(ex);
             }
+        }
+
+        private static string ConfigurationValue(Dictionary<string, string> config, string configKey)
+        {
+            var key = configKey.ToUpperInvariant();
+            if (config != null && config.ContainsKey(key) && !String.IsNullOrEmpty(config[key]))
+            {
+                return config[key];
+            }
+            return null;
+        }
+
+        private Dictionary<string, string> LoadConfiguration(string configSection)
+        {
+            // Support two names for config section to aid transition from this method to the Client Dependency Framework
+            var config = new Dictionary<string, string>();
+            var originalConfig = ConfigurationManager.GetSection("EsccWebTeam.Egms/" + configSection) as NameValueCollection;
+            if (originalConfig != null)
+            {
+                foreach (var configKey in originalConfig.AllKeys)
+                {
+                    var key = configKey.ToUpperInvariant();
+                    config.Add(key, originalConfig[key]);
+                }
+            }
+
+            var clientDependencyConfig = ConfigurationManager.GetSection("Escc.ClientDependencyFramework/" + configSection) as NameValueCollection;
+            if (clientDependencyConfig != null)
+            {
+                foreach (var configKey in clientDependencyConfig.AllKeys)
+                {
+                    var key = configKey.ToUpperInvariant();
+                    if (config.ContainsKey(key)) config.Remove(key);
+                    config.Add(key, clientDependencyConfig[key]);
+                }
+            }
+
+            return config;
         }
 
         private byte[] GetFileBytes(HttpContext context, string virtualPath, Encoding encoding)
