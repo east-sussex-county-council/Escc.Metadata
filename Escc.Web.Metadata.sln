@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EsccWebTeam.Data.Xml", "..\Escc.Data.Xml\EsccWebTeam.Data.Xml.csproj", "{86B2725C-9C37-44A4-93C7-F5122AFA0809}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Escc.Web.Metadata", "Escc.Web.Metadata\Escc.Web.Metadata.csproj", "{32E15F86-8D88-443F-874F-056191C1BA04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Escc.Web.Metadata.SchemaSources.Esd", "Escc.Web.Metadata.SchemaSources.Esd\Escc.Web.Metadata.SchemaSources.Esd.csproj", "{5D0FF4FB-B541-4C36-9B19-B30CEB29A27B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution items", "{D0F9CEFA-921C-4D0C-B1B9-4FC5B10DDD01}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		LICENSE.md = LICENSE.md
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{E09DD79A-4488-4AB9-8D3F-A7EEE78BF432}") = "Escc.Web.Metadata.NuGet", "Escc.Web.Metadata.NuGet\Escc.Web.Metadata.NuGet.nuproj", "{A0802482-AC65-4877-B52A-98A2B8D9CA4F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		UAT|Any CPU = UAT|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{86B2725C-9C37-44A4-93C7-F5122AFA0809}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86B2725C-9C37-44A4-93C7-F5122AFA0809}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86B2725C-9C37-44A4-93C7-F5122AFA0809}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86B2725C-9C37-44A4-93C7-F5122AFA0809}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86B2725C-9C37-44A4-93C7-F5122AFA0809}.UAT|Any CPU.ActiveCfg = UAT|Any CPU
+		{86B2725C-9C37-44A4-93C7-F5122AFA0809}.UAT|Any CPU.Build.0 = UAT|Any CPU
+		{32E15F86-8D88-443F-874F-056191C1BA04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32E15F86-8D88-443F-874F-056191C1BA04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32E15F86-8D88-443F-874F-056191C1BA04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32E15F86-8D88-443F-874F-056191C1BA04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32E15F86-8D88-443F-874F-056191C1BA04}.UAT|Any CPU.ActiveCfg = Release|Any CPU
+		{32E15F86-8D88-443F-874F-056191C1BA04}.UAT|Any CPU.Build.0 = Release|Any CPU
+		{5D0FF4FB-B541-4C36-9B19-B30CEB29A27B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D0FF4FB-B541-4C36-9B19-B30CEB29A27B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D0FF4FB-B541-4C36-9B19-B30CEB29A27B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D0FF4FB-B541-4C36-9B19-B30CEB29A27B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D0FF4FB-B541-4C36-9B19-B30CEB29A27B}.UAT|Any CPU.ActiveCfg = Release|Any CPU
+		{5D0FF4FB-B541-4C36-9B19-B30CEB29A27B}.UAT|Any CPU.Build.0 = Release|Any CPU
+		{A0802482-AC65-4877-B52A-98A2B8D9CA4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0802482-AC65-4877-B52A-98A2B8D9CA4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0802482-AC65-4877-B52A-98A2B8D9CA4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0802482-AC65-4877-B52A-98A2B8D9CA4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0802482-AC65-4877-B52A-98A2B8D9CA4F}.UAT|Any CPU.ActiveCfg = Release|Any CPU
+		{A0802482-AC65-4877-B52A-98A2B8D9CA4F}.UAT|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

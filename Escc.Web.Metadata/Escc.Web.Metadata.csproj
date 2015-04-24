@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{32E15F86-8D88-443F-874F-056191C1BA04}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Escc.Web.Metadata</RootNamespace>
+    <AssemblyName>Escc.Web.Metadata</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AssemblyOriginatorKeyFile>S:\_Strong names\esccdev.snk</AssemblyOriginatorKeyFile>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>S:\_Standards\VS.net Code Analysis\EsccWebTeam.CodeAnalysis.Library.Strict.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Escc.AddressAndPersonalDetails">
+      <HintPath>..\packages\Escc.AddressAndPersonalDetails.1.0.0\lib\Escc.AddressAndPersonalDetails.dll</HintPath>
+    </Reference>
+    <Reference Include="Exceptionless, Version=1.5.2121.0, Culture=neutral, PublicKeyToken=fc181f0a46f65747, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Exceptionless.1.5.2121\lib\net35\Exceptionless.dll</HintPath>
+    </Reference>
+    <Reference Include="Exceptionless.Models, Version=1.5.2121.0, Culture=neutral, PublicKeyToken=fc181f0a46f65747, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Exceptionless.1.5.2121\lib\net35\Exceptionless.Models.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Autocomplete.ashx.cs">
+      <DependentUpon>Autocomplete.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="EgmsMissingMetadataException.cs" />
+    <Compile Include="EgmsWebMetadataConfig.cs" />
+    <Compile Include="EgmsWebMetadataSectionHandler.cs" />
+    <Compile Include="EsdControlledList.cs" />
+    <Compile Include="EsdEquivalentType.cs" />
+    <Compile Include="EsdMapping.cs" />
+    <Compile Include="EsdPreferred.cs" />
+    <Compile Include="EsdTerm.cs" />
+    <Compile Include="EsdTermCollection.cs" />
+    <Compile Include="EsdTermValidator.cs" />
+    <Compile Include="EsdXmlDocument.cs" />
+    <Compile Include="FeedUrl.cs" />
+    <Compile Include="HtmlTitleWithAttributes.cs" />
+    <Compile Include="IHasMetadata.cs" />
+    <Compile Include="IMetadata.cs" />
+    <Compile Include="Metadata.cs" />
+    <Compile Include="MetadataContainer.cs" />
+    <Compile Include="MetadataControl.cs" />
+    <Compile Include="MetadataErrorMode.cs" />
+    <Compile Include="OpenSearchUrl.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Autocomplete.ashx" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,7 +1,6 @@
-Escc.Egms
-==========
+# Escc.Web.Metadata
 
-A library to work with website metadata, and bundling CSS and JavaScript files.
+A library to work with website metadata.
 
 ESD controlled lists 
 --------------------
@@ -18,7 +17,3 @@ Common metadata control (E-GMS compliant)
 The `MetadataControl` class can be used to write common metadata elements to a WebForms page, with values specified in `web.config`, set declaratively in ASPX files or set in code.
 
 Where appropriate metadata is written in the format expected by the E-Government Metadata Standard 3.0, though we will most likely update this to a more modern format such as RDFa.  
-
-CSS and JavaScript bundling
----------------------------
-The `Css` and `Script` classes provide a flexible way to load and concatenate client-side files on WebForms pages, with the bundles worked out at runtime rather than compile time. This is documented in `CombineStaticFilesHandler`.
