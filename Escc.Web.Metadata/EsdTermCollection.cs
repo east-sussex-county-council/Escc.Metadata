@@ -178,7 +178,7 @@ namespace Escc.Web.Metadata
         /// </summary>
         public void Sort()
         {
-            var sorted = this.OrderBy(term => term.Text);
+            var sorted = this.OrderBy(term => term.Text).ToList();
             this.Clear();
             foreach (var term in sorted)
             {
