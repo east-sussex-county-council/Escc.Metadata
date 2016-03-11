@@ -9,7 +9,7 @@ namespace Escc.Web.Metadata
     /// <summary>
     /// E-GMS and other web-related metadata
     /// </summary>
-    class Metadata : IMetadata
+    public class Metadata : IMetadata
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Metadata"/> class.
