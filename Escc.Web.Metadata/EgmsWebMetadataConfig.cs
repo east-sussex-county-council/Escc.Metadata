@@ -688,24 +688,11 @@ namespace Escc.Web.Metadata
         /// Determines whether errors should be thrown
         /// </summary>
         /// <returns></returns>
-        internal bool ThrowErrors
-        {
-            get
-            {
-                // Don't throw errors if creating new page in CMS
-                // Use querystring to test mode as it means references to CMS DLLs not required
-                NameValueCollection qs = HttpContext.Current.Request.QueryString;
-                if (qs["WBCMODE"] != null && qs["WBCMODE"].ToString() != "Published") return false;
-                if (qs["NRMODE"] != null && qs["NRMODE"].ToString() != "Published") return false;
-
-                // determine whether to throw errors based on config setting
-                return (
-                    (this.ErrorMode == MetadataErrorMode.On) ||
-                    (this.ErrorMode == MetadataErrorMode.RemoteOnly && !this.IsLocalMachine()) ||
-                    (this.ErrorMode == MetadataErrorMode.LocalOnly && this.IsLocalMachine())
-                    );
-            }
-        }
+        internal bool ThrowErrors => (
+            (this.ErrorMode == MetadataErrorMode.On) ||
+            (this.ErrorMode == MetadataErrorMode.RemoteOnly && !this.IsLocalMachine()) ||
+            (this.ErrorMode == MetadataErrorMode.LocalOnly && this.IsLocalMachine())
+            );
 
         /// <summary>
         /// Gets whether the request is known to come from the same machine
