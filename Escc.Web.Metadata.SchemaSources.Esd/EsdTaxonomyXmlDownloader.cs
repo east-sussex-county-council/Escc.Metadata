@@ -7,8 +7,8 @@ using System.Net;
 using System.Security.Permissions;
 using System.Text;
 using System.Xml;
+using Escc.Net;
 using Escc.Web.Metadata;
-using EsccWebTeam.Data.Xml;
 
 namespace Escc.Egms.SchemaSources.Esd
 {
@@ -107,7 +107,8 @@ namespace Escc.Egms.SchemaSources.Esd
             WebPermission xmlWebPermission = new WebPermission(NetworkAccess.Connect, url.ToString());
             xmlWebPermission.Demand();
 
-            WebRequest xmlRequest = XmlHttpRequest.Create(url);
+            var client = new HttpRequestClient(new ConfigurationProxyProvider());
+            WebRequest xmlRequest = client.CreateRequest(url);
             WebResponse xmlResponse = xmlRequest.GetResponse();
 
             try
@@ -129,7 +130,7 @@ namespace Escc.Egms.SchemaSources.Esd
             catch (XmlException ex)
             {
                 // if the XML's invalid, repeat the request so the XML can be included in the error
-                xmlRequest = XmlHttpRequest.Create(url);
+                xmlRequest = client.CreateRequest(url);
                 using (StreamReader r = new StreamReader(xmlRequest.GetResponse().GetResponseStream()))
                 {
                     ex.Data["XML"] = r.ReadToEnd();
