@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <Escc.Web.Metadata>
+    <EgmsWebMetadata xdt:Transform="RemoveAttributes(errorMode)" xdt:Locator="Condition(@errorMode = 'Off')" />
+    <EgmsWebMetadata xdt:Transform="Remove" xdt:Locator="Condition(count(@*) = 0)" />
+  </Escc.Web.Metadata>
+  <Escc.Web.Metadata xdt:Transform="Remove" xdt:Locator="Condition(count(EgmsWebMetadata) = 0)" />
+
+  <configSections>
+    <sectionGroup name="Escc.Web.Metadata" xdt:Transform="Remove" xdt:Locator="Condition(@name='Escc.Web.Metadata' and not(/configuration/Escc.Web.Metadata))" />
+  </configSections>
+  <configSections xdt:Transform="Remove" xdt:Locator="Condition(count(*) = 0)" />
+</configuration>

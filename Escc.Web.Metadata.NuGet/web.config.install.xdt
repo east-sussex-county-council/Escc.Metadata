@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <configSections xdt:Transform="InsertIfMissing" />
+  <configSections>
+    <sectionGroup name="Escc.Web.Metadata" xdt:Transform="InsertIfMissing" xdt:Locator="Match(name)" />
+    <sectionGroup name="Escc.Web.Metadata" xdt:Locator="Match(name)">
+      <section name="EgmsWebMetadata" type="Escc.Web.Metadata.EgmsWebMetadataSectionHandler, Escc.Web.Metadata, Version=1.0.0.0, Culture=neutral, PublicKeyToken=06fad7304560ae6f" xdt:Transform="InsertIfMissing" xdt:Locator="Match(name)" />
+    </sectionGroup>
+  </configSections>
+  <Escc.Web.Metadata xdt:Transform="InsertIfMissing" />
+  <Escc.Web.Metadata>
+    <EgmsWebMetadata errorMode="Off" xdt:Transform="InsertIfMissing" />
+  </Escc.Web.Metadata>
+</configuration>
