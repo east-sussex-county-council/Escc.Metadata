@@ -1133,7 +1133,13 @@ namespace Escc.Web.Metadata
                     this.Title = String.Format(Metadata.TitlePattern, this.Title);
                 }
 
-                // Let .NET emit the <title> element using the Page.Title property, and we'll just deal with the Dublin Core version
+                // If we have <head runat="server" /> let .NET emit the <title> element using the Page.Title property. Otherwise render it here.
+                if (Page != null && Page.Header == null)
+                {
+                    this.Controls.Add(new LiteralControl("<title lang=\"" + this.TitleLanguage + "\" xml:lang=\"" + this.TitleLanguage + "\">" + this.Title + "</title>" + Environment.NewLine));
+                }
+
+                // Add the Dublin Core version
                 this.Controls.Add(new LiteralControl("<meta name=\"DC.title\" content=\"" + this.Title + "\" lang=\"" + this.TitleLanguage + "\" xml:lang=\"" + this.TitleLanguage + "\"" + this.tagEnd + Environment.NewLine));
 
                 // And the Open Graph Protocol version
