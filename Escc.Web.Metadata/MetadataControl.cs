@@ -976,7 +976,7 @@ namespace Escc.Web.Metadata
         {
             if (uri.StartsWith("/"))
             {
-                uri = HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Host + uri;
+                uri = HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Authority + uri;
             }
 
             return uri;
@@ -1796,7 +1796,7 @@ namespace Escc.Web.Metadata
             // Source: http://www.ravelrumba.com/blog/android-apple-touch-icon/
             if (config.HasTouchIcon)
             {
-                sb.Append("<link rel=\"apple-touch-icon-precomposed\" href=\"").Append(Context.Request.Url.Scheme).Append("://").Append(Context.Request.Url.Host).Append("/apple-touch-icon-precomposed.png\"").Append(this.tagEnd).Append(Environment.NewLine);
+                sb.Append("<link rel=\"apple-touch-icon-precomposed\" href=\"").Append(Context.Request.Url.Scheme).Append("://").Append(Context.Request.Url.Authority).Append("/apple-touch-icon-precomposed.png\"").Append(this.tagEnd).Append(Environment.NewLine);
             }
 
             // Windows Tile Icon
