@@ -1886,7 +1886,7 @@ namespace Escc.Web.Metadata
 
             if (!this.IsInSearch)
             {
-                sb.Append("<meta name=\"robots\" content=\"none\"").Append(this.tagEnd).Append(Environment.NewLine);
+                sb.Append("<meta name=\"robots\" content=\"noindex\"").Append(this.tagEnd).Append(Environment.NewLine);
             }
 
             // go faster in Firefox
