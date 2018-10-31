@@ -74,15 +74,5 @@ namespace Escc.Web.Metadata
 		public EgmsMissingMetadataException (string message, Exception inner) : base (message, inner)
 		{
 		}
-
-
-		
-		/// <exclude />
-		[SecurityPermission(SecurityAction.Demand, SerializationFormatter=true)]
-		public override void GetObjectData (SerializationInfo info, StreamingContext context)
-		{
-			base.GetObjectData (info, context);
-		}
-		
 	}
 }
