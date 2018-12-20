@@ -1,7 +1,6 @@
 using System;
 using System.Configuration;
 using System.Web;
-using Exceptionless;
 
 namespace Escc.Web.Metadata
 {
@@ -64,18 +63,9 @@ namespace Escc.Web.Metadata
             if (section.Attributes["temporalCoverage"] != null) config.TemporalCoverage = section.Attributes["temporalCoverage"].Value;
 
             // non-string types
-            try
-            {
-                // accessibility
-                if (section.Attributes["foiExempt"] != null) config.FoiExempt = Boolean.Parse(section.Attributes["foiExempt"].Value);
-            }
-            catch (Exception ex)
-            {
-                // publisher is much more informative than default .NET error page
-                // which just says "Exception in section handler"
-                ex.ToExceptionless().Submit();
-                throw;
-            }
+
+            // accessibility
+            if (section.Attributes["foiExempt"] != null) config.FoiExempt = Boolean.Parse(section.Attributes["foiExempt"].Value);
 
             // dates
             if (section.Attributes["dateCreated"] != null) config.DateCreated = section.Attributes["dateCreated"].Value;
