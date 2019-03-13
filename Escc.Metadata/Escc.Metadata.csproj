@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Company>East Sussex County Council</Company>
+    <Authors>East Sussex County Council</Authors>
+    <Description>Models to represent metadata used on a web page</Description>
+    <Copyright>East Sussex County Council</Copyright>
+    <PackageIconUrl>https://www.eastsussex.gov.uk/apple-touch-icon.png</PackageIconUrl>
+    <PackageLicenseUrl>http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/east-sussex-county-council/Escc.Metadata</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/east-sussex-county-council/Escc.Metadata</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>metadata</PackageTags>
+    <NeutralLanguage>en-GB</NeutralLanguage>
+    <PackageReleaseNotes>Escc.Metadata is a replacement for Escc.Web.Metadata which targets .NET Standard. Obsolete properties and features are removed.</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>D:\Git\Escc.Web.Metadata\Escc.Metadata\Escc.Metadata.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Escc.AddressAndPersonalDetails" Version="4.0.1" />
+  </ItemGroup>
+
+</Project>
