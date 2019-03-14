@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Escc.AddressAndPersonalDetails;
 
 namespace Escc.Metadata
 {
@@ -13,12 +12,6 @@ namespace Escc.Metadata
         /// Gets or sets the title of the web page
         /// </summary>
         public string Title { get; set; }
-
-        /// <summary>
-        /// Gets or sets the language the title is written in.
-        /// </summary>
-        /// <value>The title language.</value>
-        public string TitleLanguage { get; set; } = "en-GB";
 
         /// <summary>
         /// Gets or sets a pattern to be used to display the title, where the title replaces {0}
@@ -61,18 +54,6 @@ namespace Escc.Metadata
         public DateTimeOffset? DateExpires { get; set; }
 
         /// <summary>
-        /// Gets or sets the person the page is about.
-        /// </summary>
-        /// <value>The person the page is about.</value>
-        public Person Person { get; set; }
-
-        /// <summary>
-        /// Gets or sets the BS7666 address of the place the page is about.
-        /// </summary>
-        /// <value>The BS7666 address.</value>
-        public BS7666Address BS7666Address { get; set; }
-
-        /// <summary>
         /// Gets or sets URIs from the <a href="https://standards.esd.org.uk/?uri=list%2FenglishAndWelshServices">Local Government Service List (LGSL)</a>.
         /// </summary>
         /// <remarks>
@@ -87,24 +68,16 @@ namespace Escc.Metadata
         public string SiteName { get; set; }
 
         /// <summary>
-        /// Gets or sets the base URL of the site's icons, including the favicon and Apple touch icon.
-        /// </summary>
-        /// <remarks>
-        /// <para>A base URL is specified rather than a complete URL as these icons tend to reside together with well-known filenames that it's not advisable to change because some browsers assume them.</para>
-        /// </remarks>
-        public string SiteImageBaseUrl { get; set; }
-
-        /// <summary>
         /// Gets or sets the canonical page URL. 
         /// </summary>
         /// <value>The page URL.</value>
         public Uri CanonicalPageUrl { get; set; }
 
         /// <summary>
-        /// Gets or sets the URL of an image representing the page.
+        /// Gets or sets the image that best represents the page.
         /// </summary>
-        /// <value>The image URL.</value>
-        public Uri PageImageUrl { get; set; }
+        /// <value>The image details.</value>
+        public ImageMetadata PageImage { get; } = new ImageMetadata();
 
         /// <summary>
         /// Metadata unique to Facebook, including any properties which are by definition unique to Open Graph.
@@ -115,11 +88,10 @@ namespace Escc.Metadata
         /// Metadata unique to Twitter
         /// </summary>
         public TwitterMetadata Twitter { get; } = new TwitterMetadata();
-        
+
         /// <summary>
-        /// Gets the <a href="http://www.opensearch.org/">OpenSearch</a> plugin URLs.
+        /// Gets or sets the licence for the content of the page
         /// </summary>
-        /// <value>The OpenSearch plugins' URLs.</value>
-        public IList<OpenSearchEngine> OpenSearchEngines { get; } = new List<OpenSearchEngine>();
+        public Uri LicenceUri { get; set; }
     }
 }

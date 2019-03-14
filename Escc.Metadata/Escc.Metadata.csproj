@@ -15,6 +15,7 @@
     <PackageTags>metadata</PackageTags>
     <NeutralLanguage>en-GB</NeutralLanguage>
     <PackageReleaseNotes>Escc.Metadata is a replacement for Escc.Web.Metadata which targets .NET Standard. Obsolete properties and features are removed.</PackageReleaseNotes>
+    <Version>1.0.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -22,7 +23,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Escc.AddressAndPersonalDetails" Version="4.0.1" />
+    <None Remove="_Metadata_Body.cshtml" />
+    <None Remove="_Metadata_Head.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Views\_Metadata_Body.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\_Metadata_Head.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

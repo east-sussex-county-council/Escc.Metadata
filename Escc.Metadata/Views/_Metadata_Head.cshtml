@@ -1,0 +1,66 @@
+﻿@model Escc.Metadata.Metadata
+@using System;
+@{
+    var title = Model.Title;
+    if (!String.IsNullOrEmpty(Model.TitlePattern))
+    {
+        title = String.Format(Model.TitlePattern, Model.Title);
+    }
+    if (!String.IsNullOrEmpty(title))
+    {
+<title>@title</title>
+<meta property="og:title" content="@title" />
+    }
+    if (!String.IsNullOrEmpty(Model.Description) && Model.Description != Model.Title)
+    {
+<meta name="description" content="@Model.Description" />
+<meta property="og:description" content="@Model.Description" />
+    }
+    if (Model.CanonicalPageUrl != null)
+    {
+<meta rel="canonical" content="@Model.CanonicalPageUrl" />
+<meta property="og:url" content="@Model.CanonicalPageUrl" />
+    }
+    if (!String.IsNullOrEmpty(Model.Facebook.FacebookAppId))
+    {
+<meta property="fb:app_id" content="@Model.Facebook.FacebookAppId" />
+    }
+    if (!String.IsNullOrEmpty(Model.Facebook.OpenGraphType))
+    {
+<meta property="og:type" content="@Model.Facebook.OpenGraphType" />
+    }
+    if (!String.IsNullOrEmpty(Model.SiteName))
+    {
+<meta property="og:site_name" content="@Model.SiteName" />
+    }
+    if (Model.DateIssued.HasValue && Model.Facebook.OpenGraphType == "article")
+    {
+<meta property="article:published_time" content="@Html.Raw(Model.DateIssued.Value.ToString("o"))" />
+    }
+    if (Model.DateModified.HasValue && Model.Facebook.OpenGraphType == "article")
+    {
+<meta property="article:modified_time" content="@Html.Raw(Model.DateModified.Value.ToString("o"))" />
+    }
+    if (Model.DateExpires.HasValue && Model.Facebook.OpenGraphType == "article")
+    {
+<meta property="article:expiration_time" content="@Html.Raw(Model.DateExpires.Value.ToString("o"))" />
+    }
+    if (Model.PageImage.ImageUrl != null)
+    {
+<meta property="og:image" content="@Model.PageImage.ImageUrl" />
+    }
+    if (!String.IsNullOrEmpty(Model.PageImage.AlternativeText))
+    {
+<meta property="og:image:alt" content="@Model.PageImage.AlternativeText" />
+    }
+    if (!String.IsNullOrEmpty(Model.Twitter.TwitterCardType))
+    {
+<meta property="twitter:card" content="@Model.Twitter.TwitterCardType" />
+    }
+    if (!String.IsNullOrEmpty(Model.Twitter.TwitterAccount))
+    {
+        var twitterHandle = Model.Twitter.TwitterAccount;
+        if (!twitterHandle.StartsWith("@", StringComparison.Ordinal)) { twitterHandle = "@" + twitterHandle; }
+<meta property="twitter:site" content="@twitterHandle" />
+    }
+}

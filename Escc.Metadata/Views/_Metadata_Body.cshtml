@@ -1,0 +1,52 @@
+﻿@model Escc.Metadata.Metadata
+@using System;
+@using System.Globalization;
+@using System.Text;
+@{
+    var title = Model.Title;
+    if (!String.IsNullOrEmpty(Model.TitlePattern))
+    {
+        title = String.Format(Model.TitlePattern, Model.Title);
+    }
+    var jsonLD = new StringBuilder("{\"@context\":\"http://schema.org\",\"@type\":\"WebPage\",");
+    if (!String.IsNullOrEmpty(title))
+    {
+        jsonLD.Append("\"name\":\"").Append(title.Replace("\"", "\\\"")).Append("\",");
+    }
+    if (!String.IsNullOrEmpty(Model.Description) && Model.Description != Model.Title)
+    {
+        jsonLD.Append("\"description\":\"").Append(Model.Description.Replace("\"", "\\\"")).Append("\",");
+    }
+    if (Model.DateCreated.HasValue)
+    {
+        jsonLD.Append("\"dateCreated\":\"").Append(Model.DateCreated.Value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)).Append("\",");
+    }
+    if (Model.DateIssued.HasValue)
+    {
+        jsonLD.Append("\"datePublished\":\"").Append(Model.DateIssued.Value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)).Append("\",");
+    }
+    if (Model.DateModified.HasValue)
+    {
+        jsonLD.Append("\"dateModified\":\"").Append(Model.DateModified.Value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)).Append("\",");
+    }
+    if (Model.DateExpires.HasValue)
+    {
+        jsonLD.Append("\"expires\":\"").Append(Model.DateExpires.Value.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)).Append("\",");
+    }
+    if (Model.LocalGovernmentServices.Any())
+    {
+        jsonLD.Append("\"http://def.esd.org.uk/Service\":[");
+        for (var i = 0; i < Model.LocalGovernmentServices.Count; i++)
+        {
+            if (i > 0) { jsonLD.Append(","); }
+            jsonLD.Append("{\"@id\":\"").Append(Model.LocalGovernmentServices[i]).Append("\"}");
+        }
+        jsonLD.Append("],");
+    }
+    if (Model.LicenceUri != null)
+    {
+        jsonLD.Append("\"license\":\"").Append(Model.LicenceUri).Append("\",");
+    }
+    jsonLD.Remove(jsonLD.Length - 1, 1).Append("}");
+}
+<script type="application/ld+json">@Html.Raw(jsonLD.ToString())</script>
