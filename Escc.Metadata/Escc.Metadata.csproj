@@ -5,7 +5,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Company>East Sussex County Council</Company>
     <Authors>East Sussex County Council</Authors>
-    <Description>Models to represent metadata used on a web page</Description>
+    <Description>Models and MVC views to represent metadata used on a web page.</Description>
     <Copyright>East Sussex County Council</Copyright>
     <PackageIconUrl>https://www.eastsussex.gov.uk/apple-touch-icon.png</PackageIconUrl>
     <PackageLicenseUrl>http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/</PackageLicenseUrl>
@@ -28,10 +28,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Views\_Metadata_Body.cshtml">
+    <EmbeddedResource Include="Views\Shared\_Metadata_Body.cshtml">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\_Metadata_Head.cshtml">
+    <EmbeddedResource Include="Views\Shared\_Metadata_Head.cshtml">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </EmbeddedResource>
   </ItemGroup>

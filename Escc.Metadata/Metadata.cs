@@ -93,5 +93,10 @@ namespace Escc.Metadata
         /// Gets or sets the licence for the content of the page
         /// </summary>
         public Uri LicenceUri { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether the current page should be indexed by search engines
+        /// </summary>
+        public bool IsInSearch { get; set; } = true;
     }
 }

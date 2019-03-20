@@ -63,4 +63,14 @@
         if (!twitterHandle.StartsWith("@", StringComparison.Ordinal)) { twitterHandle = "@" + twitterHandle; }
 <meta property="twitter:site" content="@twitterHandle" />
     }
+    if (!Model.IsInSearch || Model.DateExpires.HasValue)
+    {
+        var robots = Model.IsInSearch ? string.Empty : "noindex";
+        if (Model.DateExpires.HasValue)
+        {
+            if (!Model.IsInSearch) { robots += ","; }
+            robots += ("unavailable_after:" + Model.DateExpires.Value.ToUniversalTime().ToString("dddd, dd-MMM-yy HH:mm:ss UTC")); // RFC 850 format
+        }
+<meta name="robots" content="@robots" />
+    }
 }
