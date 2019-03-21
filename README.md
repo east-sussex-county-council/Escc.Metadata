@@ -19,7 +19,7 @@ The package includes two Razor partial views for metadata which should appear in
 		...
 		services.Configure<RazorViewEngineOptions>(options => 
         {
-            options.FileProviders.Add(new EmbeddedFileProvider(typeof(Metadata.Metadata).Assembly, "Escc.Metadata.Views"));
+            options.FileProviders.Add(new EmbeddedFileProvider(typeof(Metadata.Metadata).Assembly, "Escc.Metadata.Views.Shared"));
         });
 		...
 	}
